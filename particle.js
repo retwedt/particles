@@ -50,18 +50,18 @@ Particle.prototype.update = function(){
 	this.x += this.mass*this.xVel;
 	this.y += this.mass*this.yVel;
 
-	if (this.x < this.width/3){
-		this.x = this.width/3;
+	if (this.x < this.width/2){
+		this.x = this.width/2;
 		this.xVel = -this.xVel;
-	} else if (this.x > width-(this.width/4)){
-		this.x = width-this.width/4;
+	} else if (this.x > width-(this.width/2)){
+		this.x = width-this.width/2;
 		this.xVel = -this.xVel;
 	}
-	if (this.y < this.height/3){
-		this.y = this.height/3;
+	if (this.y < this.height/2){
+		this.y = this.height/2;
 		this.yVel = -this.yVel;
-	} else if (this.y > height-(this.height/4)){
-		this.y = height-this.height/4;
+	} else if (this.y > height-(this.height/2)){
+		this.y = height-this.height/2;
 		this.yVel = -this.yVel;
 	}
 
