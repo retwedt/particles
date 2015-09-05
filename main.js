@@ -5,10 +5,10 @@ var ballPit;
 function setup(){
 	mainCanvas = createCanvas(windowWidth, windowHeight);
 
-	angleMode(DEGREES);
+	// angleMode(DEGREES);
 
 	ballPit = new ParticleGroup();
-	ballPit.setup(8);
+	ballPit.setup(40);
 }
 
 
