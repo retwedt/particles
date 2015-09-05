@@ -11,6 +11,8 @@ function Particle () {
 	this.xVel = 0;
 	this.yVel = 0;
 
+	this.life = 0;
+
 	this.id = 0;
 
 	this.mass = 0;
@@ -23,7 +25,7 @@ function Particle () {
 }
 
 
-Particle.prototype.setup = function(newX, newY, newWidth, newHeight, newSpeed, newAngle, newMass, colorObj){
+Particle.prototype.setup = function(newX, newY, newWidth, newHeight, newSpeed, newAngle, newMass, colorObj, newLife){
 	this.x = newX;
 	this.y = newY;
 
@@ -43,6 +45,8 @@ Particle.prototype.setup = function(newX, newY, newWidth, newHeight, newSpeed, n
 	this.color.r = colorObj.r;
 	this.color.g = colorObj.g;
 	this.color.b = colorObj.b;
+
+	this.life = newLife;
 };
 
 
