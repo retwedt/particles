@@ -1,23 +1,25 @@
 //global variables
 var mainCanvas;
-var ballPit;
+
+var balls;
+
 
 function setup(){
 	mainCanvas = createCanvas(windowWidth, windowHeight);
 
-	// angleMode(DEGREES);
+	angleMode(DEGREES);
 
-	ballPit = new ParticleGroup();
-	ballPit.setup(40);
+	balls = new ParticleGroup(2);
+
 }
 
 
 function draw() {
 	background(255);
 
-	ballPit.draw();
-	// debugger;
-	ballPit.update();
+	balls.draw();
+	balls.update();
+
 }
 
 
