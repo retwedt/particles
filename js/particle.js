@@ -24,6 +24,8 @@ function Particle (xCenter, yCenter, radius, angle, speed, colorObj) {
 	this.xVelocity = this.speed*cos(this.angle); // Horizontal velocity
 	this.yVelocity = this.speed*sin(this.angle); // Vertical velocity
 
+	// this.
+
 	// this.color = color([colorObj.r, colorObj.g, colorObj.b, colorObj.a]);
 	this.color = {
 		r:colorObj.r,

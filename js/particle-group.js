@@ -53,18 +53,21 @@ ParticleGroup.prototype.draw = function () {
 ParticleGroup.prototype.checkCollision = function (ball1, ball2) {
 	var distance = dist(ball1.x, ball1.y, ball2.x, ball2.y);
 
+	// labels
 	text("1", ball1.x, ball1.y);
 	stroke("green");
 	line(ball1.x, ball1.y, ball2.x, ball2.y);
 
 
-
+	// calculate angle of intersection between two particles
 	var slope = (ball2.y - ball1.y)/(ball2.x - ball1.x);
 	var tanSlope =  -(ball2.x - ball1.x)/(ball2.y - ball1.y);
 	var intersectionAngle = atan2((ball2.y - ball1.y), (ball2.x - ball1.x));
 	var lineX = ball1.radius*cos(intersectionAngle);
 	var lineY = ball1.radius*sin(intersectionAngle);
 
+	// if particles are colliding, display the intersection point and a
+	// the collision plane
 	if (distance <= ball1.radius + ball2.radius) {
 
 		fill("black");
@@ -72,13 +75,17 @@ ParticleGroup.prototype.checkCollision = function (ball1, ball2) {
 		ellipse((ball1.x + lineX), (ball1.y + lineY), 10, 10);
 		line((ball1.x+lineX)-(lineY), (ball1.y+lineY)+(lineX), (ball1.x+lineX)+(lineY), (ball1.y+lineY)-(lineX));
 
+		// if particles are colliding, return true
 		return true;
 	}
+	// if particles are not colliding, return false
 	return false;
 };
 
 
 ParticleGroup.prototype.checkAllCollisions = function() {
+
+	// reset particles to default state (not green, not colliding)
 	for (var i=0; i<this.particles.length; i++){
 		this.particles[i].color.g = 0;
 		this.particles[i].isColliding = false;
@@ -88,6 +95,7 @@ ParticleGroup.prototype.checkAllCollisions = function() {
 		for (var j=i+1; j<this.particles.length; j++){
 			var ball1 = this.particles[i];
 			var ball2 = this.particles[j];
+			// if there is a collision between two particles, 
 			if (this.checkCollision(ball1, ball2)) {
 	// 			this.colX = ball1.radius*cos(ball1.angle);
 	// 			this.colY = ball1.radius*sin(ball1.angle);
