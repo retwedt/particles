@@ -1,66 +1,44 @@
 /*
-	Particles using Objects!
-
-	TOPICS TO COVER IN DEMO
-	=======================
-	WHAT IS A CONSTRUCTOR?
-	WHAT IS PROTOTYPE?
-	WHAT IS THIS?
-	DEFAULT VALUES FOR CONSTRUCTORS?
-
-	Concepts to review:
-		Arrays
-		Array.push()
-		ellipse()
+	Particle Burst!
 
 */ 
 
-var ball; // Global variable for a single particle
-var ballArray = []; // Global array variable to hold balls..........
-var ballPit; // Global variable to hold particle group object
+var particleGroups = [];
 
 function setup(){
 	createCanvas(windowWidth, windowHeight); // Create canvas that fills screen
 
-	// // Create a single ball using the particle object!
-	// var redColor = random(0, 255);
-	// var radius = random(50, 100);
-	// var xCenter = random(radius, width - radius);
-	// var yCenter = random(radius, height - radius);
-	// var xVelocity = random(-10, 10);
-	// var yVelocity = random(-10, 10);
-	// ball = new Particle(xCenter, yCenter, radius, xVelocity, yVelocity, redColor);
-
-	// // Fill an array with balls!
-	// for (var i=0; i<20; i++){
-	// 	var redColor = random(0, 255);
-	// 	var radius = random(50, 100);
-	// 	var xCenter = random(radius, width - radius);
-	// 	var yCenter = random(radius, height - radius);
-	// 	var xVelocity = random(-10, 10);
-	// 	var yVelocity = random(-10, 10);
-	// 	ball = new Particle(xCenter, yCenter, radius, xVelocity, yVelocity, redColor);
-
-	// 	ballArray.push(ball);
-	// }
-
-	// Create a new particle group to hold the ball pit
-	ballPit = new ParticleGroup(20);
 }
 
+
 function draw() {
-	background(255); // Fill background with white
+	background(255, 255, 255, 100);
 
-	// // Draw a single ball!
-	// ball.draw();
-	// ball.update();
+	// We need to loop backwards here so that when we remove an element, we 
+	// don't run into problems.
+	for (var i = particleGroups.length - 1; i >= 0; i--) {
+		if (particleGroups[i].checkIsAlive()){
+			// Particle group is alive and well, so it can update and draw
+			particleGroups[i].draw();
+			particleGroups[i].update();
+		} 
+		else {
+			// Particle group is dead, so we can stop holding on to it.
+			particleGroups.splice(i, 1);
+		}
+	}
+}
 
-	// // Draw array of balls!
-	// for (var i=0; i<ballArray.length; i++){
-	// 	ballArray[i].draw();
-	// 	ballArray[i].update();
-	// }
 
-	ballPit.draw();
-	ballPit.update();
+function mousePressed() {
+	// var numParticles = random(60, 80);
+	var numParticles = random(2, 3);
+	var gravity = 0.6;
+	var burst = new ParticleGroup(numParticles, mouseX, mouseY, gravity);
+	particleGroups.push(burst);
+}
+
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
 }
