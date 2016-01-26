@@ -14,23 +14,21 @@
 
 
 // Particle constructor - defines the Particle object and any of its variables 
-function Particle (xCenter, yCenter, radius, angle, speed, colorObj) {
-	this.x = xCenter;
-	this.y = yCenter;
+function Particle (radius, posVect, velVect, colorObj) {
 	this.radius = radius;
+	this.posVect = posVect;
+	this.velVect = velVect;
 
-	this.angle = angle;
-	this.speed = speed;
-	this.xVelocity = this.speed*cos(this.angle); // Horizontal velocity
-	this.yVelocity = this.speed*sin(this.angle); // Vertical velocity
+	this.angle = atan2(this.velVect.y, this.velVect.x);
 
-	// this.color = color([colorObj.r, colorObj.g, colorObj.b, colorObj.a]);
 	this.color = {
 		r:colorObj.r,
 		g:colorObj.g,
 		b:colorObj.b,
 		a:colorObj.a
 	};
+
+	this.mass = 1; // only used in collision detection currently
 
 	this.isColliding = false;
 }
@@ -39,33 +37,34 @@ function Particle (xCenter, yCenter, radius, angle, speed, colorObj) {
 // Update position of each particle and check for wall collisions
 Particle.prototype.update = function () {
 	// Update particle position using velocity
-	this.x += this.xVelocity;
-	this.y += this.yVelocity;
+	this.posVect.x += this.velVect.x;
+	this.posVect.y += this.velVect.y;
 
 	// Left wall
-	if (this.x < this.radius) { 
-		this.x = this.radius;
-		this.xVelocity *= -1;
+	if (this.posVect.x < this.radius) { 
+		this.posVect.x = this.radius;
+		this.velVect.x *= -1;
 	} 
 	// Right wall
-	else if (this.x > (width - this.radius)) { 
-		this.x = width - this.radius;
-		this.xVelocity *= -1;
+	else if (this.posVect.x > (width - this.radius)) { 
+		this.posVect.x = width - this.radius;
+		this.velVect.x *= -1;
 	}
 
 	// Top wall
-	if (this.y < this.radius) { 
-		this.y = this.radius;
-		this.yVelocity *= -1;
+	if (this.posVect.y < this.radius) { 
+		this.posVect.y = this.radius;
+		this.velVect.y *= -1;
 	}
 	// Bottom wall 
-	else if (this.y > (height - this.radius)) { 
-		this.y = height - this.radius;
-		this.yVelocity *= -1;
+	else if (this.posVect.y > (height - this.radius)) { 
+		this.posVect.y = height - this.radius;
+		this.velVect.y *= -1;
 	}
 
-	this.angle = atan2(this.yVelocity, this.xVelocity);
-	this.speed = sqrt((this.xVelocity*this.xVelocity) + (this.yVelocity + this.yVelocity));
+	// for graphics calculations
+	this.angle = atan2(this.velVect.y, this.velVect.x);
+	this.speed = sqrt((this.velVect.x*this.velVect.x) + (this.velVect.y + this.velVect.y));
 
 
 };
@@ -80,14 +79,14 @@ Particle.prototype.draw = function () {
 	} else {
 		noStroke();
 	}
-	ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
+	ellipse(this.posVect.x, this.posVect.y, this.radius * 2, this.radius * 2);
 
 	noFill();
 	stroke("white");
 
 	var lineX = this.radius*cos(this.angle);
 	var lineY = this.radius*sin(this.angle);
-	line(this.x, this.y, (this.x+lineX), (this.y+lineY));
+	line(this.posVect.x, this.posVect.y, (this.posVect.x+lineX), (this.posVect.y+lineY));
 
 	
 	var slope = lineY/lineX;
@@ -95,6 +94,6 @@ Particle.prototype.draw = function () {
 
 	stroke("blue");
 
-	line((this.x+lineX)-(lineY), (this.y+lineY)+(lineX), (this.x+lineX)+(lineY), (this.y+lineY)-(lineX));
+	line((this.posVect.x+lineX)-(lineY), (this.posVect.y+lineY)+(lineX), (this.posVect.x+lineX)+(lineY), (this.posVect.y+lineY)-(lineX));
 
 };
