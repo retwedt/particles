@@ -21,4 +21,4 @@ Particle Burst \[[download zip](https://github.com/retwedt/particles/archive/bur
 
 Fireworks \[[download zip](https://github.com/retwedt/particles/archive/fireworks.zip)] \[[link](https://github.com/retwedt/particles/tree/fireworks)\] - Click anywhere on the screen and particles will burst from your cursor!  After a few moments, these particles will split into several smaller particles, before eventually fading.
 
-Vector Collisions \[[download zip](https://github.com/retwedt/retwedt.github.io/archive/version-2.zip)] \[[link](https://github.com/retwedt/retwedt.github.io/tree/version-2)\] - WORK IN PROGRESS.  Adding vector based movemnent and collisions to the particle system.
+Vector Collisions \[[download zip](https://github.com/retwedt/retwedt.github.io/archive/version-2.zip)] \[[link](https://github.com/retwedt/retwedt.github.io/tree/version-2)\] - WORK IN PROGRESS.  Adding vector based movement and collisions to the particle system.
