@@ -1,8 +1,10 @@
 # Particles
 
-This multi-user chat app is a project from Course 4 Server-side Programming at CodeAbode.  Users can enter their name, view a list of all users in the chat room, and communicate in real time with each other!   This app takes advantage of several technologies:
+This particle demo is a project from Course 3 Advanced JavaScript at CodeAbode.  Particles served as a fun graphic demonstration of advanced JavaScript concepts like constructor functions and prototypes.  Students began by hard-coding a single particle.  After demonstrating that this method would not scale effectively, students were introduced to constructor functions.  Constructor functions were used to easily make groups of particles that could be added to a scene with minimal code.
 
--	[P5.js](http://p5js.org/) - a creative coding library for easy canvas scripting
+This project used the following technologies:
+
+-	[P5.js](http://p5js.org/) - a creative coding library for simplifing canvas scripting
 
 ## Directory Structure
 
