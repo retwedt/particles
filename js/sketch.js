@@ -15,10 +15,17 @@ function setup(){
 
 
 function draw() {
+	// reset canvas
 	fill(255, 255, 255, 30);
 	rect(0,0, width, height);
-
 	noStroke();
+	// add instructions for new users
+	textSize(24);
+	textAlign(CENTER);
+	textStyle(ITALIC);
+	fill(50, 50, 50, 30);
+	text("click anywhere", windowWidth/2, windowHeight/2);
+
 
 	// If a particle group has particles in it, draw the particles and update their position
 	// If the particle group is empty, remove it from the allparticles array
